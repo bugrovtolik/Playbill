@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ShowCreateServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Online Showbill</a> &gt; <a href="index.source.html" class="el_package">com.abugrov.servlets</a> &gt; <span class="el_source">ShowCreateServlet.java</span></div><h1>ShowCreateServlet.java</h1><pre class="source lang-java linenums">package com.abugrov.servlets;
+
+import com.abugrov.models.Show;
+import com.abugrov.models.enums.*;
+import com.abugrov.store.ShowStorage;
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+<span class="nc" id="L14">public class ShowCreateServlet extends HttpServlet {</span>
+<span class="nc" id="L15">    final AtomicInteger ids = new AtomicInteger();</span>
+
+<span class="nc" id="L17">    private final ShowStorage SHOW_STORAGE = ShowStorage.getInstance();</span>
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L21">	    req.setAttribute(&quot;types&quot;, ShowType.valuesAsStrings());</span>
+<span class="nc" id="L22">	    req.setAttribute(&quot;places&quot;, ShowPlace.valuesAsStrings());</span>
+<span class="nc" id="L23">	    RequestDispatcher dispatcher = req.getRequestDispatcher(&quot;/views/show/ShowCreate.jsp&quot;);</span>
+<span class="nc" id="L24">	    dispatcher.forward(req, resp);</span>
+<span class="nc" id="L25">    }</span>
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L29">	this.SHOW_STORAGE.add(new Show(this.ids.incrementAndGet(), req.getParameter(&quot;name&quot;), req.getParameter(&quot;datetime&quot;), req.getParameter(&quot;type&quot;), req.getParameter(&quot;place&quot;), req.getParameter(&quot;description&quot;)));</span>
+<span class="nc" id="L30">	resp.sendRedirect(String.format(&quot;%s%s&quot;, req.getContextPath(), &quot;/view&quot;));</span>
+<span class="nc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

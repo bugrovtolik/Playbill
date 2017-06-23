@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Online Playbill</display-name>
+    <servlet>
+        <servlet-name>ShowViewServlet</servlet-name>
+        <servlet-class>com.abugrov.servlets.ShowViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowViewServlet</servlet-name>
+        <url-pattern>/view</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowSearchServlet</servlet-name>
+        <servlet-class>com.abugrov.servlets.ShowSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowSearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowCreateServlet</servlet-name>
+        <servlet-class>com.abugrov.servlets.ShowCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowCreateServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowEditServlet</servlet-name>
+        <servlet-class>com.abugrov.servlets.ShowEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowEditServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowDeleteServlet</servlet-name>
+        <servlet-class>com.abugrov.servlets.ShowDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowDeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+</web-app>

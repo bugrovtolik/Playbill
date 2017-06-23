@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MemoryStorage.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Online Showbill</a> &gt; <a href="index.source.html" class="el_package">com.abugrov.store</a> &gt; <span class="el_source">MemoryStorage.java</span></div><h1>MemoryStorage.java</h1><pre class="source lang-java linenums">package com.abugrov.store;
+
+import com.abugrov.models.Show;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+<span class="nc" id="L10">public class MemoryStorage implements Storage {</span>
+    
+<span class="nc" id="L12">    private final AtomicInteger ids = new AtomicInteger();</span>
+    
+<span class="nc" id="L14">    private final ConcurrentHashMap&lt;Integer, Show&gt; shows = new ConcurrentHashMap&lt;&gt;();</span>
+    
+    
+    @Override
+<span class="nc" id="L18">    public Collection&lt;Show&gt; values() { return this.shows.values(); }</span>
+
+    @Override
+    public int add(Show show) {
+<span class="nc" id="L22">	this.shows.put(show.getId(), show);</span>
+<span class="nc" id="L23">	return show.getId();</span>
+    }
+
+    @Override
+<span class="nc" id="L27">    public void edit(Show show) { this.shows.replace(show.getId(), show); }</span>
+
+    @Override
+<span class="nc" id="L30">    public void delete(int id) { this.shows.remove(id); }</span>
+
+    @Override
+    public Show get(int id) {
+<span class="nc" id="L34">	return this.shows.get(id);</span>
+    }
+
+    @Override
+    public Collection&lt;Show&gt; find(String by, String value) {
+<span class="nc" id="L39">	Collection&lt;Show&gt; values = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L40">	List&lt;Show&gt; arrshows = new ArrayList&lt;&gt;(this.values());</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">	if(!shows.isEmpty()) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">	    for(int i = 0, len = this.shows.size(); i &lt; len; i++) {</span>
+<span class="nc bnc" id="L43" title="All 18 branches missed.">		switch(by) {</span>
+		    case &quot;name&quot;:
+<span class="nc bnc" id="L45" title="All 2 branches missed.">			if(arrshows.get(i).getName().equalsIgnoreCase(value)) {</span>
+<span class="nc" id="L46">			    values.add(arrshows.get(i));</span>
+			}
+			break;
+		    case &quot;date&quot;:
+<span class="nc bnc" id="L50" title="All 2 branches missed.">			if(arrshows.get(i).getDate(true).regionMatches(0, value, 0, 10)) {</span>
+<span class="nc" id="L51">			    values.add(arrshows.get(i));</span>
+			}
+			break;
+		    case &quot;type&quot;:
+<span class="nc bnc" id="L55" title="All 2 branches missed.">			if(arrshows.get(i).getType().equals(value)) {</span>
+<span class="nc" id="L56">			    values.add(arrshows.get(i));</span>
+			}
+			break;
+		    case &quot;place&quot;:
+<span class="nc bnc" id="L60" title="All 2 branches missed.">			if(arrshows.get(i).getPlace().equals(value)) {</span>
+<span class="nc" id="L61">			    values.add(arrshows.get(i));</span>
+			}
+			break;
+		}
+	    }
+	}
+<span class="nc" id="L67">	return values;</span>
+    }
+
+    @Override
+<span class="nc" id="L71">    public int generateId() { return this.ids.incrementAndGet(); }</span>
+
+    @Override
+<span class="nc" id="L74">    public void close() {}</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>

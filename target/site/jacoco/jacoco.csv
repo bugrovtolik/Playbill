@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Online Showbill,com.abugrov.servlets,ShowCreateServlet,69,0,0,0,11,0,3,0,3,0
+Online Showbill,com.abugrov.servlets,ShowEditServlet,81,0,0,0,12,0,4,0,4,0
+Online Showbill,com.abugrov.servlets,ShowSearchServlet,55,0,0,0,11,0,4,0,4,0
+Online Showbill,com.abugrov.servlets,ShowViewServlet,35,0,0,0,11,0,3,0,3,0
+Online Showbill,com.abugrov.servlets,ShowDeleteServlet,29,0,0,0,5,0,3,0,3,0
+Online Showbill,com.abugrov.service,Settings,36,0,0,0,10,0,4,0,4,0
+Online Showbill,com.abugrov.models.enums,ShowType,93,0,2,0,11,0,6,0,5,0
+Online Showbill,com.abugrov.models.enums,ShowPlace,103,0,2,0,12,0,6,0,5,0
+Online Showbill,com.abugrov.models,Show,26,83,2,4,4,33,2,16,1,14
+Online Showbill,com.abugrov.store,HibernateStorage,92,90,0,0,15,24,5,5,5,5
+Online Showbill,com.abugrov.store,MemoryStorage,182,0,30,0,25,0,27,0,9,0
+Online Showbill,com.abugrov.store,ShowStorage,53,0,0,0,12,0,11,0,11,0
+Online Showbill,com.abugrov.store,JdbcStorage,706,0,106,0,63,0,62,0,9,0

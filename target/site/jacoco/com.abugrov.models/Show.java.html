@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Show.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Online Showbill</a> &gt; <a href="index.source.html" class="el_package">com.abugrov.models</a> &gt; <span class="el_source">Show.java</span></div><h1>Show.java</h1><pre class="source lang-java linenums">package com.abugrov.models;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Show {
+    private int id;
+    private String name;
+    private String type;
+    private String place;
+    private String description;
+    private Date date;
+    
+<span class="fc" id="L15">    public Show() {</span>
+<span class="fc" id="L16">    }</span>
+    
+<span class="fc" id="L18">    public Show(final int id, final String name, final String date, final String type, final String place, final String description) {	</span>
+<span class="fc" id="L19">	    this.id = id;</span>
+<span class="fc" id="L20">	    this.name = name;</span>
+<span class="fc" id="L21">	    this.type = type;</span>
+<span class="fc" id="L22">	    this.place = place;</span>
+
+	    
+<span class="fc bfc" id="L25" title="All 2 branches covered.">	    if(date != null) {</span>
+		Date newdate;
+		try {
+<span class="nc" id="L28">		    newdate = new SimpleDateFormat(&quot;yyyy-MM-dd'T'HH:mm&quot;).parse(date);</span>
+<span class="fc" id="L29">		} catch (ParseException ex) {</span>
+<span class="fc" id="L30">		    newdate = new Date();</span>
+<span class="nc" id="L31">		}</span>
+<span class="fc" id="L32">		this.date = newdate;</span>
+<span class="fc" id="L33">	    } else {</span>
+<span class="fc" id="L34">		this.date = new Date();</span>
+	    }
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">	    this.description = description==null?&quot;&quot;:description;</span>
+<span class="fc" id="L38">    }</span>
+    
+    public int getId() { 
+<span class="fc" id="L41">	return this.id; </span>
+    }
+    public String getName() {
+<span class="fc" id="L44">	return this.name;</span>
+    }
+
+    /**
+     * If b is true then returns (yyyy-MM-dd'T'HH:mm) format, else returns (dd-MM-yyyy HH:mm) format
+     * @param b
+     * @return date as String
+     */
+    public String getDate(boolean b) {
+<span class="nc bnc" id="L53" title="All 2 branches missed.">	return b?new SimpleDateFormat(&quot;yyyy-MM-dd'T'HH:mm&quot;).format(this.date)</span>
+<span class="nc" id="L54">		:new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm&quot;).format(this.date);</span>
+    }
+    public Date getDate() {
+<span class="fc" id="L57">	return this.date;</span>
+    }
+    public String getType() {
+<span class="fc" id="L60">	return this.type;</span>
+    }
+    public String getPlace() {
+<span class="fc" id="L63">	return this.place;</span>
+    }
+    public String getDescription() {
+<span class="fc" id="L66">	return this.description;</span>
+    }
+    
+    public void setId(int id) {
+<span class="fc" id="L70">	this.id = id;</span>
+<span class="fc" id="L71">    }</span>
+
+    public void setName(String name) {
+<span class="fc" id="L74">	this.name = name;</span>
+<span class="fc" id="L75">    }</span>
+
+    public void setType(String type) {
+<span class="fc" id="L78">	this.type = type;</span>
+<span class="fc" id="L79">    }</span>
+
+    public void setPlace(String place) {
+<span class="fc" id="L82">	this.place = place;</span>
+<span class="fc" id="L83">    }</span>
+
+    public void setDescription(String description) {
+<span class="fc" id="L86">	this.description = description;</span>
+<span class="fc" id="L87">    }</span>
+
+    public void setDate(Date date) {
+<span class="fc" id="L90">	this.date = date;</span>
+<span class="fc" id="L91">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.4.201502262128</span></div></body></html>
